@@ -3,9 +3,11 @@ export async function getAllTiles() {
     cache: "no-store", // always fresh data
   });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch tiles");
-  }
-
+  return res.json();
+}
+export async function getSingleTile(id) {
+  const res = await fetch(`https://tiles-gallery-server-yj9h.onrender.com/data/${id}`, {
+    cache: "no-store",
+  });
   return res.json();
 }
