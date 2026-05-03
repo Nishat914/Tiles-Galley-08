@@ -7,14 +7,16 @@ import Link from "next/link";
 const AllTilesPage = () => {
   const [tiles, setTiles] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchTiles = async () => {
-      const data = await getAllTiles();
-      setTiles(data);
-    };
-    fetchTiles();
-  }, []);
+  const fetchTiles = async () => {
+    const data = await getAllTiles();
+    setTiles(data);
+    setLoading(false); 
+  };
+  fetchTiles();
+}, []);
 
   
   const filteredTiles = tiles.filter((tile) =>
@@ -41,8 +43,13 @@ const AllTilesPage = () => {
         <h2 className="text-center text-4xl font-bold mb-10 text-cyan-800">
           All Tiles
         </h2>
+        {loading?  <p className="text-center text-cyan-600 text-2xl font-bold mt-10">
+          Loading tiles...<span className="loading loading-infinity loading-xl text-cyan-600"></span>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        </p> :
+        <div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {filteredTiles.map((tile) => (
             <div key={tile.id} className="card bg-base-100 shadow-md">
               <figure>
@@ -76,6 +83,10 @@ const AllTilesPage = () => {
             No tiles found !!!
           </p>
         )}
+          
+        </div>} 
+
+        
       </div>
     </>
   );

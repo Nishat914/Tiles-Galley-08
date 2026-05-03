@@ -16,17 +16,17 @@ const Footer = () => {
                 <h3 className="text-white font-semibold mb-3">Social Links</h3>
                 <div className="flex gap-3 mt-2">
                     
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-white hover:text-black transition">
+                    <a className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-white hover:text-black transition cursor-pointer">
                     <FaInstagram />
-                    </div>
+                    </a>
 
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center ">
+                    <a className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-white hover:text-black  transition cursor-pointer">
                     <FaFacebook />
-                    </div>
+                    </a>
 
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center ">
+                    <a className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-white hover:text-black transition cursor-pointer">
                     <FaTwitter/>
-                    </div>
+                    </a>
 
                 </div>
                 </div>
