@@ -2,6 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 const LoginPage = ()   => {
     const {
@@ -16,6 +17,21 @@ const LoginPage = ()   => {
         const { email , password} = data;
         console.log(email);
         console.log(password);
+
+        const { data :res, error } = await authClient.signIn.email({
+            email: email, // required
+            password: password, // required
+            rememberMe: true,
+            callbackURL: "/",
+        });
+        console.log(res,error);
+
+        if(error){
+            alert(error.message)
+        }
+        if(res){
+            alert('Login seccessfully')
+        }
         
         
     }
