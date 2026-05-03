@@ -1,7 +1,7 @@
 import { getAllTiles } from "@/lib/data"; 
 import Image from "next/image";
 import Link from "next/link";
-
+import Banner from "@/components/Banner";
 
 export default async function Home() {
    const tiles = await getAllTiles();
@@ -12,13 +12,12 @@ export default async function Home() {
   return (
     <>
       
-      <h2 className="text-5xl text-amber-500 text-center">
-        homepage
-      </h2>
+      
+      <Banner></Banner>
       <div className="container mx-auto w-[80%] ">
        
         <h1 className="text-4xl font-bold mb-4 text-cyan-800">Featured Tiles</h1>
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
             {featuredTiles.map((tile) => (
               <div key={tile.id} className="card bg-base-100  shadow-sm">
                 <figure>
