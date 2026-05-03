@@ -2,6 +2,7 @@ import { getAllTiles } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import Banner from "@/components/Banner";
+import BreakingNews from "@/components/BreakingNews";
 
 export default async function Home() {
    const tiles = await getAllTiles();
@@ -14,6 +15,7 @@ export default async function Home() {
       
       
       <Banner></Banner>
+      <BreakingNews></BreakingNews>
       <div className="container mx-auto w-[80%] ">
        
         <h1 className="text-4xl font-bold mb-4 text-cyan-800">Featured Tiles</h1>
