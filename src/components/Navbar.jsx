@@ -9,7 +9,7 @@ const Navbar = ()   => {
     
     return (
         <>
-            <div className='container mx-auto w-[80%] mt-4'>
+            <div className='sticky top-0 z-50 container mx-auto w-[80%] mt-4'>
                 <div className=" bg-base-100  flex flex-col lg:flex-row justify-between items-center gap-4">
                 <div className="">
                     
