@@ -1,16 +1,22 @@
 'use client'
 import { authClient } from "@/lib/auth-client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { FaEye, FaEyeSlash  } from "react-icons/fa";
+import Link from "next/link";
 
 const RegisterPage = ()   => {
+    const router = useRouter();
+
     const {
             register,
             handleSubmit,
             watch,
             formState: { errors },
         } = useForm();
-
+    const[isShowPassword , setIsShowPassword] = useState(false)
+    
     const handleSubmitfunction = async(data) => {
         console.log(data)
 
@@ -26,15 +32,23 @@ const RegisterPage = ()   => {
         })
         console.log(res,error);
 
-        if(error){
-            alert(error.message)
+       if(error){
+            alert(error.message);
         }
+
         if(res){
-            alert('SignUp seccessfully')
+            alert('SignUp successfully');
+            router.push("/"); 
         }
         
         
     }
+    const handleGoogleSignin = async() => {
+                const data = await authClient.signIn.social({
+                provider: "google",
+            });
+            console.log(data,'data')
+        }
     // console.log(errors ,watch("email"))
     return (
         <>
@@ -56,10 +70,24 @@ const RegisterPage = ()   => {
                     {errors.email && <span className="text-red-500">{errors.email.message}</span>}
 
                     <label className="label mt-4">Password</label>
-                    <input type="password" {...register("password" , { required: "password field is required" })} className="input" placeholder="Password" />
-                    {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+                    <div className="relative">
+                                            
+                        <input type={isShowPassword? "text":"password"} {...register("password" , { required: "password field is required" })} className="input w-full " placeholder="Password" />
+                        {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+                        <span className="absolute right-2 top-4 cursor-pointer" onClick={() => setIsShowPassword(!isShowPassword)}>
+                             {isShowPassword?  <FaEye/> : <FaEyeSlash/>}
+                        </span>
+                    </div>
 
                     <button className="btn bg-cyan-800 text-white mt-4">Register</button>
+
+                    <div className="mt-4">
+                        <span className="text-gray-500">Already have an account? </span>
+                        <Link href={"/login"} className="text-cyan-600">
+                         login
+                        </Link>
+                    </div>
+                    
                     
                 </fieldset>
             </form>

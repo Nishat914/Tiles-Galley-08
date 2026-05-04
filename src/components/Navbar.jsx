@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const Navbar = ()   => {
 
-    const { data: session } = authClient.useSession()
+    const { data: session ,isPending} = authClient.useSession()
     const user = session?.user
     console.log(user,'session')
     
@@ -30,15 +30,18 @@ const Navbar = ()   => {
                 </div>
                 <div >
 
-                    {user? 
+                    {isPending ? 
+                    <span className="loading loading-dots loading-xl"></span>
+                    :
+                    user? 
                     <div className='flex justify-center items-center gap-3'>
                         <p className='font-semibold text-cyan-600'>Hiiii,{user.name}</p>
-                        <img 
+                        <Image 
                         src={user.image} 
                         alt="user" 
-                        width={50} 
-                        height={50} 
-                        className="rounded-full"
+                        width={40} 
+                        height={40} 
+                        className="rounded-full "
                         />
                         <button onClick={async() => await authClient.signOut()} className="btn bg-cyan-800 text-white border-black px-10">
   
