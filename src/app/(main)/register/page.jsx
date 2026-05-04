@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash  } from "react-icons/fa";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const RegisterPage = ()   => {
     const router = useRouter();
@@ -33,12 +34,16 @@ const RegisterPage = ()   => {
         console.log(res,error);
 
        if(error){
-            alert(error.message);
+        toast.error(error.message || "Signup failed");
+        return;
         }
 
         if(res){
-            alert('SignUp successfully');
-            router.push("/"); 
+            toast.success("Signup successfully");
+
+            setTimeout(() => {
+                router.push("/");
+            }, 1500);
         }
         
         

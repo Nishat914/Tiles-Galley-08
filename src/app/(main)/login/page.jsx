@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const LoginPage = ()   => {
     const {
@@ -30,10 +31,10 @@ const LoginPage = ()   => {
         console.log(res,error);
 
         if(error){
-            alert(error.message)
+            toast.error(error.message)
         }
         if(res){
-            alert('Login seccessfully')
+            toast.success('Login successfully')
         }
         
         

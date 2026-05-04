@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");
@@ -11,14 +12,27 @@ const UpdateProfile = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    const res = await authClient.updateUser({
-      name,
-      image,
+    if (!name && !image) {
+        toast.error("Please enter at least one field");
+        return;
+    }
+
+    const { data: res, error } = await authClient.updateUser({
+        ...(name && { name }),
+        ...(image && { image }),
     });
 
+    if (error) {
+    toast.error(error.message || "Update failed");
+    return;
+    }
+
     if (res) {
-      alert("Profile Updated!");
-      router.push("/"); 
+        toast.success("Profile Updated!");
+
+        setTimeout(() => {
+        router.push("/");
+        }, 1500);
     }
   };
 

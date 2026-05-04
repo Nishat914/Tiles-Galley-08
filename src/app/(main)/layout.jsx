@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { ToastContainer } from "react-toastify";
 const MainLayout = ({children})   => {
     return (
         <>
@@ -8,6 +9,7 @@ const MainLayout = ({children})   => {
             <Navbar></Navbar>
             {children}
             <Footer></Footer>
+           <ToastContainer />
         </>
     )
 }

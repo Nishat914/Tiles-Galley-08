@@ -3,6 +3,7 @@ import { useSession } from "@/lib/auth-client";
 const MyProfilePage = ()   => {
 
     const { data: session } = useSession();
+    
 
     if (!session) return <p className="text-cyan-600">Loading...</p>;
 
