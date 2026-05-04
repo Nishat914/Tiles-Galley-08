@@ -1,11 +1,16 @@
 'use client'
 import { useSession } from "@/lib/auth-client";
+
 const MyProfilePage = ()   => {
 
-    const { data: session } = useSession();
+    const { data: session ,isPending } = useSession();
     
 
-    if (!session) return <p className="text-cyan-600">Loading...</p>;
+     if (isPending) {
+        return <p className="text-cyan-600 text-center">Loading...</p>;
+    }
+
+    if (!session) return null;
 
     const user = session.user;
 
