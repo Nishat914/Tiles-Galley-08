@@ -4,6 +4,7 @@ import Link from "next/link";
 import Banner from "@/components/Banner";
 import BreakingNews from "@/components/BreakingNews";
 
+
 export default async function Home() {
    const tiles = await getAllTiles();
    console.log(tiles);
@@ -17,7 +18,7 @@ export default async function Home() {
       <Banner></Banner>
       <BreakingNews></BreakingNews>
       <div className="container mx-auto w-[80%] ">
-       
+        
         <h1 className="text-4xl font-bold mb-4 text-cyan-800">Featured Tiles</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
             {featuredTiles.map((tile) => (
